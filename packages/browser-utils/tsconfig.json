@@ -1,0 +1,15 @@
+{
+  "extends": "@total-typescript/tsconfig/tsc/dom/library-monorepo",
+  "compilerOptions": {
+    "outDir": "dist",
+    "incremental": true,
+    "rootDir": "src",
+    "paths": {
+      "~browser-utils/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "tsc-alias": {
+    "resolveFullPaths": true
+  }
+}
