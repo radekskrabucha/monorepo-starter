@@ -1,0 +1,23 @@
+{
+  "name": "@monorepo-starter/web",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "format": "prettier ./app --write",
+    "lint": "eslint \"app/**/*.+(ts|js|tsx)\"",
+    "lint:fix": "eslint \"app/**/*.+(ts|js|tsx)\" --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@monorepo-starter/browser-utils": "workspace:*",
+    "@monorepo-starter/utils": "workspace:*",
+    "@monorepo-starter/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "vite-tsconfig-paths": "5.1.4"
+  }
+}
