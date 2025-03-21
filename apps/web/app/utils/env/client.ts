@@ -7,7 +7,8 @@ export const envClient = createEnv({
     VITE_IS_DEV: z
       .enum(['true', 'false'])
       .default('false')
-      .transform(v => v === 'true')
+      .transform(v => v === 'true'),
+    VITE_API_URL: z.string().min(1)
   },
   runtimeEnv: import.meta.env
 })
