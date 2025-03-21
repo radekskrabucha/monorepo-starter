@@ -1,5 +1,5 @@
 import type { NotFoundHandler } from 'hono'
-import { NOT_FOUND } from '~/api/utils/httpCodes'
+import { NOT_FOUND } from '~api/utils/httpCodes'
 
 export const notFound: NotFoundHandler = c => {
   return c.json(

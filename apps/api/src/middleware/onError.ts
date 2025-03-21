@@ -1,7 +1,7 @@
 import type { ErrorHandler } from 'hono'
 import type { ContentfulStatusCode } from 'hono/utils/http-status'
-import { env } from '~/api/utils/env'
-import { INTERNAL_SERVER_ERROR, OK } from '~/api/utils/httpCodes'
+import { env } from '~api/utils/env'
+import { INTERNAL_SERVER_ERROR, OK } from '~api/utils/httpCodes'
 
 export const onError: ErrorHandler = (err, c) => {
   const currentStatus =
