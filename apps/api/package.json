@@ -7,7 +7,7 @@
     "./dist/lib/client.js"
   ],
   "exports": {
-    ".": "./dist/lib/client.js"
+    "./client": "./dist/lib/client.js"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
