@@ -1,0 +1,26 @@
+{
+  "name": "@monorepo-starter/db",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "files": [
+    "./dist/*"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./zod-schema/*": "./dist/zod-schema/*.js",
+    "./schema/*": "./dist/schema/*.js"
+  },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "format": "prettier ./src --write",
+    "lint": "eslint \"src/**/*.+(ts|js|tsx|jsx)\"",
+    "lint:fix": "eslint \"src/**/*.+(ts|js|tsx|jsx)\" --fix",
+    "type-check": "tsc --noEmit",
+    "db:migrate": "drizzle-kit migrate",
+    "db:generate-migration": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "0.10.4"
+  }
+}
