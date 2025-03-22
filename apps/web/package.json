@@ -17,8 +17,5 @@
     "@monorepo-starter/browser-utils": "workspace:*",
     "@monorepo-starter/ui": "workspace:*",
     "@monorepo-starter/utils": "workspace:*"
-  },
-  "devDependencies": {
-    "vite-tsconfig-paths": "5.1.4"
   }
 }
