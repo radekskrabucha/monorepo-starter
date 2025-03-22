@@ -24,23 +24,18 @@
       "cache": false
     },
     "format": {
-      "dependsOn": ["^build"],
       "cache": true
     },
     "lint": {
-      "dependsOn": ["^build"],
       "cache": true
     },
     "lint:fix": {
-      "dependsOn": ["^build"],
       "cache": true
     },
     "type-check": {
-      "dependsOn": ["^build"],
       "cache": true
     },
     "test": {
-      "dependsOn": ["^build"],
       "cache": true
     }
   }
