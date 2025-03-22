@@ -1,4 +1,7 @@
-import { fetchWrapper, type InferRequestType } from '@monorepo-starter/api/client'
+import {
+  fetchWrapper,
+  type InferRequestType
+} from '@monorepo-starter/api/client'
 import { queryOptions } from '@tanstack/react-query'
 import { appClient } from '~web/lib/apiClient'
 
