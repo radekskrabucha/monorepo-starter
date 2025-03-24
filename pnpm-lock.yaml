@@ -217,6 +217,10 @@ importers:
       '@monorepo-starter/utils':
         specifier: workspace:*
         version: link:../../packages/utils
+    devDependencies:
+      '@monorepo-starter/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint
 
   packages/browser-utils: {}
 

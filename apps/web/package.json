@@ -17,5 +17,8 @@
     "@monorepo-starter/browser-utils": "workspace:*",
     "@monorepo-starter/ui": "workspace:*",
     "@monorepo-starter/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@monorepo-starter/eslint-config": "workspace:*"
   }
 }
