@@ -4,11 +4,13 @@
   "tasks": {
     "dev": {
       "dependsOn": ["^build"],
+      "inputs": [".env"],
       "cache": false,
       "persistent": true
     },
     "build": {
       "dependsOn": ["^build"],
+      "inputs": [".env"],
       "outputs": [
         "dist",
         "*.tsbuildinfo",
