@@ -274,7 +274,11 @@ importers:
         specifier: workspace:*
         version: link:../eslint
 
-  packages/utils: {}
+  packages/utils:
+    devDependencies:
+      '@monorepo-starter/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint
 
 packages:
 

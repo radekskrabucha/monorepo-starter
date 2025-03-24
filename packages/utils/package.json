@@ -1,6 +1,7 @@
 {
   "name": "@monorepo-starter/utils",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "files": [
     "./dist/*"
@@ -15,5 +16,8 @@
   },
   "exports": {
     "./*": "./dist/*.js"
+  },
+  "devDependencies": {
+    "@monorepo-starter/eslint-config": "workspace:*"
   }
 }
