@@ -1,0 +1,17 @@
+{
+  "name": "@monorepo-starter/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "./dist/*"
+  ],
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "format": "prettier ./src --write",
+    "type-check": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  }
+}
