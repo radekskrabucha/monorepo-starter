@@ -1,8 +1,8 @@
 {
   "name": "@monorepo-starter/api",
   "version": "1.0.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "files": [
     "./dist/lib/client.js"
   ],
@@ -22,5 +22,8 @@
   "dependencies": {
     "@monorepo-starter/db": "workspace:*",
     "@monorepo-starter/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@monorepo-starter/eslint-config": "workspace:*"
   }
 }
