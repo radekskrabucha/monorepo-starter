@@ -233,6 +233,10 @@ importers:
       '@neondatabase/serverless':
         specifier: 0.10.4
         version: 0.10.4
+    devDependencies:
+      '@monorepo-starter/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint
 
   packages/eslint: {}
 
