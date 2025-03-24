@@ -222,7 +222,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/eslint
 
-  packages/browser-utils: {}
+  packages/browser-utils:
+    devDependencies:
+      '@monorepo-starter/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint
 
   packages/db:
     dependencies:
