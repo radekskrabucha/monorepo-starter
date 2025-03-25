@@ -11,6 +11,7 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": [".env"],
+      "env": ["VITE_API_URL", "VITE_IS_DEV"],
       "outputs": [
         "dist",
         "*.tsbuildinfo",
