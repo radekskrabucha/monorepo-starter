@@ -41,7 +41,7 @@ RUN rm -rf ./**/*/src
 
 # Final image
 FROM alpine AS runner
-ARG PROJECT=@monorepo-starter/api
+ARG PROJECT_FOLDER_NAME=api
 ARG USER=nodejs
 
 RUN addgroup --system --gid 1001 nodejs
@@ -50,7 +50,7 @@ USER ${USER}
 
 WORKDIR /app
 COPY --from=builder --chown=nodejs:nodejs /app .
-WORKDIR /app/apps/${PROJECT}
+WORKDIR /app/apps/${PROJECT_FOLDER_NAME}
 
 ARG PORT=4000
 ENV PORT=${PORT}
