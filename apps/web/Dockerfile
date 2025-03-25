@@ -70,4 +70,4 @@ ARG VITE_API_URL=http://localhost:4000
 ENV VITE_IS_DEV=${VITE_IS_DEV}
 ENV VITE_API_URL=${VITE_API_URL}
 
-CMD node dist/index
+CMD node .output/server/index.mjs
