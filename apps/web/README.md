@@ -1,72 +1,79 @@
-# Welcome to TanStack.com!
+# Web Application
 
-This site is built with TanStack Router!
+A modern, type-safe web application built with [TanStack Start](https://tanstack.com/start/latest) and React.
 
-- [TanStack Router Docs](https://tanstack.com/router)
+## ✨ Features
 
-It's deployed automagically with Netlify!
+- 🚀 [TanStack Start](https://tanstack.com/start/latest) for modern React development
+- 🛣️ Type-safe routing with [@tanstack/react-router](https://tanstack.com/router)
+- 🔍 Data fetching with [@tanstack/react-query](https://tanstack.com/query)
+- 🎨 Styling with [Tailwind CSS](https://tailwindcss.com/)
+- 🎯 Full TypeScript support
+- 📱 Responsive design with modern UI components
+- 🔄 Auto-generated type-safe API client integration
 
-- [Netlify](https://netlify.com/)
+## 📁 Project Structure
 
-## Development
+```
+app/
+├── client.tsx       # Client entry point
+├── ssr.tsx         # Server-side rendering entry point
+├── router.tsx      # Router configuration
+├── components/     # Reusable UI components
+├── features/       # Feature-specific components and logic
+├── routes/         # Route components and layouts
+├── layout/         # Layout components
+├── lib/           # Shared libraries
+├── utils/         # Utility functions
+├── styles/        # Global styles and Tailwind config
+└── config/        # Application configuration
+```
 
-From your terminal:
+## 🚀 Getting Started
 
-```sh
+1. Install dependencies:
+
+```bash
 pnpm install
+```
+
+2. Set up environment variables:
+
+```bash
+cp .env.example .env
+```
+
+3. Start the development server:
+
+```bash
 pnpm dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+The application will be available at `http://localhost:3000`
 
-## Editing and previewing the docs of TanStack projects locally
+## 📝 Available Scripts
 
-The documentations for all TanStack projects except for `React Charts` are hosted on [https://tanstack.com](https://tanstack.com), powered by this TanStack Router app.
-In production, the markdown doc pages are fetched from the GitHub repos of the projects, but in development they are read from the local file system.
+- `pnpm dev` - Start development server with hot reload
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm format` - Format code with Prettier
+- `pnpm lint` - Run ESLint
+- `pnpm lint:fix` - Fix ESLint issues
+- `pnpm type-check` - Run TypeScript type checking
 
-Follow these steps if you want to edit the doc pages of a project (in these steps we'll assume it's [`TanStack/form`](https://github.com/tanstack/form)) and preview them locally :
+## 🔄 API Integration
 
-1. Create a new directory called `tanstack`.
+The application uses a type-safe API client generated from the API service:
 
-```sh
-mkdir tanstack
+```typescript
+import { apiClient } from '@monorepo-starter/api/client'
+
+// Type-safe API calls with full autocompletion
+const { data } = await apiClient.users.get()
 ```
 
-2. Enter the directory and clone this repo and the repo of the project there.
+## 🎨 Styling
 
-```sh
-cd tanstack
-git clone git@github.com:TanStack/tanstack.com.git
-git clone git@github.com:TanStack/form.git
-```
+This project uses Tailwind CSS for styling. The configuration can be found in:
 
-> [!NOTE]
-> Your `tanstack` directory should look like this:
->
-> ```
-> tanstack/
->    |
->    +-- form/
->    |
->    +-- tanstack.com/
-> ```
-
-> [!WARNING]
-> Make sure the name of the directory in your local file system matches the name of the project's repo. For example, `tanstack/form` must be cloned into `form` (this is the default) instead of `some-other-name`, because that way, the doc pages won't be found.
-
-3. Enter the `tanstack/tanstack.com` directory, install the dependencies and run the app in dev mode:
-
-```sh
-cd tanstack.com
-pnpm i
-# The app will run on https://localhost:3000 by default
-pnpm dev
-```
-
-4. Now you can visit http://localhost:3000/form/latest/docs/overview in the browser and see the changes you make in `tanstack/form/docs`.
-
-> [!NOTE]
-> The updated pages need to be manually reloaded in the browser.
-
-> [!WARNING]
-> You will need to update the `docs/config.json` file (in the project's repo) if you add a new doc page!
+- `app/styles/tailwind.css` - Global styles
