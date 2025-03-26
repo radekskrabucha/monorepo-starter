@@ -2,13 +2,13 @@ import { config } from 'dotenv'
 import path from 'node:path'
 import { z } from 'zod'
 
-const foo = path.resolve(
+const envPath = path.resolve(
   process.cwd(),
   process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 )
 
 config({
-  path: foo
+  path: envPath
 })
 
 const EnvSchema = z.object({
