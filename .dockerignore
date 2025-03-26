@@ -1,65 +1,77 @@
 # node_modules and package manager-related files
-node_modules
-.pnpm
+**/node_modules
+**/.pnpm
 
 # build outputs
-dist
-out
-.output
-.cache
-.next
-.vinxi
+**/dist
+**/out
+**/.output
+**/.cache
+**/.next
+**/.vinxi
 
 # environment variables and secrets
-.env*
+**/.env*
 
 # IDE/editor settings
-.vscode
-.idea
-*.swp
-*.swo
+**/.vscode
+**/.idea
+**/*.swp
+**/*.swo
 
 # logs and runtime files
-pnpm-debug.log*
-turbo-debug.log*
-*.log
-*.pid
-*.seed
-*.pid.lock
+**/pnpm-debug.log*
+**/turbo-debug.log*
+**/*.log
+**/*.pid**/
+**/*.seed
+**/*.pid.lock
 
 # Docker-specific files
-Dockerfile*
-docker-compose*.yml
-.docker*
+**/Dockerfile*
+**/docker-compose*.yml
+**/.docker*
 
 # OS-specific files
-.DS_Store
-Thumbs.db
+**/.DS_Store
+**/Thumbs.db
 
 # test and coverage files
-coverage
-__tests__
-test
-tests
-*.test.*
-*.spec.*
-jest.config.*
-vitest*
+**/coverage
+**/__tests__
+**/test
+**/tests
+**/*.test.*
+**/*.spec.*
+**/jest.config.*
+**/vitest*
 
 # Development
-.git
+**/.git
+**/.gitignore
 
-.github
-*.md
+**/.github
+**/*.md
 
 
 # Turbo
-.turbo
+**/.turbo
 
 # TypeScript
-*.tsbuildinfo
+**/*.tsbuildinfo
 
 # Temporary files
-*.tmp
-*.temp
-.cache 
+**/*.tmp
+**/*.temp
+**/.cache
+
+# Other
+**/.prettierrc
+**/.prettierignore
+**/.editorconfig
+**/.eslintrc
+**/.eslintignore
+**/.npmrc
+**/.nvmrc
+**/eslint.config*
+**/drizzle*.config.ts
