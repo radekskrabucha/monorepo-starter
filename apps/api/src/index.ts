@@ -1,6 +1,7 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
+import { runDbMigrations } from '~api/lib/db'
 import { notFound } from '~api/middleware/notFound'
 import { onError } from '~api/middleware/onError'
 import { pinoLogger } from '~api/middleware/pinoLogger'
@@ -8,6 +9,8 @@ import { serveEmojiFavicon } from '~api/middleware/serveEmojiFavicon'
 import { appRouter } from '~api/routes'
 import type { AppBindings } from '~api/types/app'
 import { env } from '~api/utils/env'
+
+runDbMigrations()
 
 export const app = new Hono<AppBindings>()
   .basePath('/api')
