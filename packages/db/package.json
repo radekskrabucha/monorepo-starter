@@ -18,7 +18,9 @@
     "lint:fix": "eslint \"src/**/*.+(ts|js|tsx|jsx)\" --fix",
     "type-check": "tsc --noEmit",
     "db:migrate": "drizzle-kit migrate",
-    "db:generate-migration": "drizzle-kit generate"
+    "db:generate-migration": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@neondatabase/serverless": "0.10.4"
