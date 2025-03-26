@@ -13,7 +13,8 @@
     "./schema/*": "./dist/schema/*.js"
   },
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && npm run copy-migrations",
+    "copy-migrations": "cp -r src/migrations dist/",
     "format": "prettier ./src --write",
     "lint": "eslint \"src/**/*.+(ts|js|tsx|jsx)\"",
     "lint:fix": "eslint \"src/**/*.+(ts|js|tsx|jsx)\" --fix",
