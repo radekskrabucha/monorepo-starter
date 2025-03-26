@@ -23,7 +23,8 @@ const EnvSchema = z.object({
     'fatal',
     'silent'
   ]),
-  TRUSTED_ORIGINS: z.string()
+  TRUSTED_ORIGINS: z.string(),
+  DRIZZLE_MIGRATIONS_FOLDER: z.string().optional()
 })
 
 export type Env = z.infer<typeof EnvSchema>
