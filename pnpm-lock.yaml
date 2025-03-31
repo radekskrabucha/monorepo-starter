@@ -169,8 +169,8 @@ importers:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@4.0.17)
       tsc-alias:
-        specifier: 1.8.11
-        version: 1.8.11
+        specifier: 1.8.13
+        version: 1.8.13
       tsx:
         specifier: 4.19.3
         version: 4.19.3
@@ -5117,8 +5117,9 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
-  tsc-alias@1.8.11:
-    resolution: {integrity: sha512-2DuEQ58A9Rj2NE2c1+/qaGKlshni9MCK95MJzRGhQG0CYLw0bE/ACgbhhTSf/p1svLelwqafOd8stQate2bYbg==}
+  tsc-alias@1.8.13:
+    resolution: {integrity: sha512-hpuglrm2DoHZE62L8ntYqRNiSQ7J8kvIxEsajzY/QfGOm7EcdhgG5asqoWYi2E2KX0SqUuhOTnV8Ry8D/TnsEA==}
+    engines: {node: '>=16.20.2'}
     hasBin: true
 
   tsconfck@3.1.5:
@@ -10756,7 +10757,7 @@ snapshots:
     dependencies:
       typescript: 5.8.2
 
-  tsc-alias@1.8.11:
+  tsc-alias@1.8.13:
     dependencies:
       chokidar: 3.6.0
       commander: 9.5.0
