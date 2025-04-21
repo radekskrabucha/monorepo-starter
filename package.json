@@ -33,7 +33,7 @@
     "hono": "4.7.7",
     "hono-pino": "0.8.0",
     "jotai": "2.12.3",
-    "lucide-react": "0.501.0",
+    "lucide-react": "0.503.0",
     "pg": "8.14.1",
     "pino": "9.6.0",
     "pino-pretty": "13.0.0",
