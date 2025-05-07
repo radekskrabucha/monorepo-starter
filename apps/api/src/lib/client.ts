@@ -28,12 +28,6 @@ type ExtractSuccessResponse<T> =
       : never
     : never
 
-type UnionToIntersection<U> = (
-  U extends unknown ? (k: U) => void : never
-) extends (k: infer I) => void
-  ? I
-  : never
-
 export async function fetchWrapper<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   T extends ClientResponse<any, StatusCode, any>,
@@ -41,39 +35,31 @@ export async function fetchWrapper<
 >(
   resPromise: Promise<T>
 ): Promise<
-  UnionToIntersection<
-    SuccessResponse extends ClientResponse<
-      infer Data,
-      StatusCode,
-      ResponseFormat
-    >
-      ? Data
-      : never
-  >
+  SuccessResponse extends ClientResponse<infer Data, StatusCode, ResponseFormat>
+    ? Data
+    : never
 > {
   const response = await resPromise
 
+  const contentHeader = response.headers.get('content-type')
+  const isJsonContent = contentHeader && contentHeader === 'application/json'
+
   if (!response.ok) {
-    let errorData: ErrorData | string
-    try {
-      errorData = (await response.json()) as ErrorData
-    } catch {
-      errorData = await response.text()
+    const errorData = isJsonContent
+      ? ((await response.json()) as ErrorData)
+      : ((await response.text()) as string)
+
+    if (typeof errorData === 'object') {
+      throw new ApiError(
+        'message' in errorData ? errorData.message : 'API request failed',
+        'type' in errorData ? errorData.type : ApiErrorType.generic.unknown
+      )
     }
 
-    const errorMessage =
-      typeof errorData === 'string'
-        ? errorData
-        : errorData.message || 'API request failed'
-
-    if (typeof errorData === 'object' && 'type' in errorData) {
-      throw new ApiError(errorMessage, errorData.type)
-    }
-
-    throw new ApiError(errorMessage, ApiErrorType.generic.unknown)
+    throw new ApiError(errorData, ApiErrorType.generic.unknown)
   }
 
-  return response.json()
+  return isJsonContent ? response.json() : response.text()
 }
 
 export type { InferRequestType, InferResponseType }
