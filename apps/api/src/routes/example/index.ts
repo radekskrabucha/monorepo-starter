@@ -1,4 +1,5 @@
 import { zValidator } from '@hono/zod-validator'
+import { BAD_REQUEST } from '@monorepo-starter/utils/http-codes'
 import { Hono } from 'hono'
 import { z } from 'zod'
 import type { AppBindings } from '~api/types/app'
@@ -14,7 +15,7 @@ export const exampleRouter = new Hono<AppBindings>().basePath('/example').get(
     if (!result.success) {
       return c.json(
         createErrorResponse('Invalid query', ApiErrorType.example.invalidQuery),
-        400
+        BAD_REQUEST
       )
     }
   }),
