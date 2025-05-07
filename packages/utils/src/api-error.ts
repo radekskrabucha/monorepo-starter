@@ -8,11 +8,11 @@ export class ApiError<T extends string = string> extends Error {
   }
 }
 
-export type ErrorBaseData<T extends string> = {
+export type ErrorExtraData = Record<string, unknown>
+export type ErrorData<T extends string> = {
   message: string
   type: T
-}
-export type ErrorExtraData = Record<string, unknown>
+} & ErrorExtraData
 
 export const createErrorResponse = <
   T extends string,
@@ -26,7 +26,7 @@ export const createErrorResponse = <
     message,
     type,
     ...(extra || {})
-  }) as ErrorBaseData<T> & Extra
+  }) as ErrorData<T>
 
 export const createErrorResponseFactory = <T extends string>() => {
   return <Extra extends ErrorExtraData = {}>(
