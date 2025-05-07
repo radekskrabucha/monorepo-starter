@@ -18,7 +18,8 @@ export const ApiErrorType = {
 export type ApiErrorType = StringUnion<typeof ApiErrorType>
 export type ExampleApiErrorType = StringUnion<typeof ApiErrorType.example>
 
-export type ErrorData<T extends ApiErrorType = ApiErrorType> = ErrorDataGeneric<T>
+export type ErrorData<T extends ApiErrorType = ApiErrorType> =
+  ErrorDataGeneric<T>
 
 export class ApiError<T extends ApiErrorType> extends ApiErrorGeneric<T> {
   constructor(message: string, type: T) {
