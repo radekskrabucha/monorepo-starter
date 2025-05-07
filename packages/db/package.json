@@ -25,6 +25,7 @@
     "db:push": "drizzle-kit push"
   },
   "devDependencies": {
-    "@monorepo-starter/eslint-config": "workspace:*"
+    "@monorepo-starter/eslint-config": "workspace:*",
+    "@monorepo-starter/utils": "workspace:*"
   }
 }
