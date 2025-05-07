@@ -6,6 +6,9 @@ import {
 import type { StringUnion } from '@monorepo-starter/utils/types'
 
 export const ApiErrorType = {
+  generic: {
+    unknown: 'unknown'
+  },
   example: {
     invalidQuery: 'invalid_query'
   }
@@ -14,7 +17,7 @@ export const ApiErrorType = {
 export type ApiErrorType = StringUnion<typeof ApiErrorType>
 export type ExampleApiErrorType = StringUnion<typeof ApiErrorType.example>
 
-export type ErrorData<T extends ApiErrorType> = ErrorDataGeneric<T>
+export type ErrorData<T extends ApiErrorType = ApiErrorType> = ErrorDataGeneric<T>
 
 export class ApiError<T extends ApiErrorType> extends ApiErrorGeneric<T> {
   constructor(message: string, type: T) {
