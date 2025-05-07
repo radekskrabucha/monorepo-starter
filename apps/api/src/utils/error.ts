@@ -7,7 +7,8 @@ import type { StringUnion } from '@monorepo-starter/utils/types'
 
 export const ApiErrorType = {
   generic: {
-    unknown: 'unknown'
+    unknown: 'unknown',
+    notFound: 'not_found'
   },
   example: {
     invalidQuery: 'invalid_query'
