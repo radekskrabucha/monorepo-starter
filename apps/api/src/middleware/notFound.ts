@@ -1,12 +1,12 @@
+import { NOT_FOUND } from '@monorepo-starter/utils/http-codes'
 import type { NotFoundHandler } from 'hono'
-import { NOT_FOUND } from '~api/utils/httpCodes'
+import { ApiErrorType, createErrorResponse } from '~api/utils/error'
 
 export const notFound: NotFoundHandler = c => {
   return c.json(
-    {
-      message: 'Not found',
+    createErrorResponse('Not found', ApiErrorType.generic.notFound, {
       path: c.req.path
-    },
+    }),
     NOT_FOUND
   )
 }
