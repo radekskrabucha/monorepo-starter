@@ -5,8 +5,10 @@ import type {
   InferRequestType,
   InferResponseType
 } from 'hono/client'
-import type { SuccessStatusCode } from 'hono/utils/http-status'
+import type { ResponseFormat } from 'hono/types'
+import type { SuccessStatusCode, StatusCode } from 'hono/utils/http-status'
 import type { appRouter } from '~api/routes'
+import { ApiError, ApiErrorType, type ErrorData } from '~api/utils/error'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type HonoClientArgs<T extends Hono<any, any, any>> = Parameters<typeof hc<T>>
@@ -17,21 +19,6 @@ const appClientBase = hc<AppRouter>('')
 export type AppClient = typeof appClientBase
 export const appHC = (...args: HonoClientArgs<AppRouter>): AppClient =>
   hc<AppRouter>(...args)
-
-export type ApiErrorResponse = {
-  message?: string
-} & Record<string, unknown>
-
-export class ApiError<T = unknown> extends Error {
-  constructor(
-    message: string,
-    public status: number,
-    public data: T
-  ) {
-    super(message)
-    this.name = 'ApiError'
-  }
-}
 
 // Helper type to extract successful response type from ClientResponse union
 type ExtractSuccessResponse<T> =
@@ -49,22 +36,27 @@ type UnionToIntersection<U> = (
 
 export async function fetchWrapper<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  T extends ClientResponse<any, any, any>,
+  T extends ClientResponse<any, StatusCode, any>,
   SuccessResponse extends ExtractSuccessResponse<T> = ExtractSuccessResponse<T>
 >(
   resPromise: Promise<T>
 ): Promise<
   UnionToIntersection<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    SuccessResponse extends ClientResponse<infer Data, any, any> ? Data : never
+    SuccessResponse extends ClientResponse<
+      infer Data,
+      StatusCode,
+      ResponseFormat
+    >
+      ? Data
+      : never
   >
 > {
   const response = await resPromise
 
   if (!response.ok) {
-    let errorData: ApiErrorResponse | string
+    let errorData: ErrorData | string
     try {
-      errorData = (await response.json()) as ApiErrorResponse
+      errorData = (await response.json()) as ErrorData
     } catch {
       errorData = await response.text()
     }
@@ -74,7 +66,11 @@ export async function fetchWrapper<
         ? errorData
         : errorData.message || 'API request failed'
 
-    throw new ApiError(errorMessage, response.status, errorData)
+    if (typeof errorData === 'object' && 'type' in errorData) {
+      throw new ApiError(errorMessage, errorData.type)
+    }
+
+    throw new ApiError(errorMessage, ApiErrorType.generic.unknown)
   }
 
   return response.json()
