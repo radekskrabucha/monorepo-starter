@@ -1,3 +1,4 @@
+import { validateEnv } from '@monorepo-starter/utils/env'
 import { config } from 'dotenv'
 import path from 'node:path'
 import { z } from 'zod'
@@ -17,14 +18,4 @@ const EnvSchema = z.object({
 
 export type Env = z.infer<typeof EnvSchema>
 
-export let env: Env
-
-try {
-  env = EnvSchema.parse(process.env)
-} catch (error) {
-  if (error instanceof z.ZodError) {
-    console.error('❌ Invalid environment variables')
-    console.error(error.flatten().fieldErrors)
-    process.exit(1)
-  }
-}
+export const env = validateEnv(EnvSchema)
