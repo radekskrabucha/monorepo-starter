@@ -15,8 +15,5 @@ export const pinoLogger = () =>
         }
       },
       env.NODE_ENV === 'production' ? undefined : pretty()
-    ),
-    http: {
-      reqId: () => crypto.randomUUID()
-    }
+    )
   })
