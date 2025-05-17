@@ -1,6 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "daemon": true,
+  "globalDependencies": ["**/.env"],
+  "envMode": "loose",
   "tasks": {
     "dev": {
       "dependsOn": ["^build"],
@@ -11,7 +13,6 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": [".env"],
-      "env": ["VITE_API_URL", "VITE_IS_DEV"],
       "outputs": [
         "dist",
         "*.tsbuildinfo",
