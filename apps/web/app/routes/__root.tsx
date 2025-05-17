@@ -10,8 +10,8 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import * as React from 'react'
 import { DefaultCatchBoundary } from '~web/components/DefaultCatchBoundary'
 import { NotFound } from '~web/components/NotFound'
+import { seo } from '~web/config/app'
 import appCss from '~web/styles/app.css?url'
-import { seo } from '~web/utils/seo'
 
 const RootDocument: React.FC<React.PropsWithChildren> = ({ children }) => (
   <html>
@@ -45,7 +45,7 @@ export const Route = createRootRouteWithContext<{
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'
       },
-      ...seo({ title: undefined })
+      ...seo()
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
