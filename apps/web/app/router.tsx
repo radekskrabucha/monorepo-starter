@@ -1,10 +1,10 @@
-import { createRouter as createTanStackRouter } from '@tanstack/react-router'
-import { routerWithQueryClient } from '@tanstack/react-router-with-query'
 import {
-  getQueryClient,
   QUERY_CACHE_TIME,
   QUERY_STALE_TIME
-} from '~web/lib/reactQuery'
+} from '@monorepo-starter/utils/react-query'
+import { createRouter as createTanStackRouter } from '@tanstack/react-router'
+import { routerWithQueryClient } from '@tanstack/react-router-with-query'
+import { getQueryClient } from '~web/lib/reactQuery'
 import { DefaultCatchBoundary } from './components/DefaultCatchBoundary'
 import { NotFound } from './components/NotFound'
 import { routeTree } from './routeTree.gen'
