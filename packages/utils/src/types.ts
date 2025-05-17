@@ -11,3 +11,22 @@ export type StringUnion<T> = {
       ? StringUnion<T[K]>
       : never
 }[keyof T]
+
+export type NumbersToStrings<T> = T extends number
+  ? string
+  : T extends object
+    ? { [K in keyof T]: NumbersToStrings<T[K]> }
+    : T
+
+export type UnknownToAny<T> = {
+  [K in keyof T]: unknown extends T[K]
+    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      any
+    : T[K] extends object
+      ? UnknownToAny<T[K]>
+      : T[K]
+}
+
+export type Prettify<T> = {
+  [K in keyof T]: T[K]
+} & {}
