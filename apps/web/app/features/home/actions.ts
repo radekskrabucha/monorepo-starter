@@ -1,17 +1,13 @@
-import {
-  fetchWrapper,
-  type InferRequestType
-} from '@monorepo-starter/api/client'
+import { inferJSON } from '@monorepo-starter/utils/fetch-client'
 import { queryOptions } from '@tanstack/react-query'
-import { appClient } from '~web/lib/apiClient'
+import type { InferRequestType } from 'hono/client'
+import { apiClient } from '~web/lib/apiClient'
 
-const getGreetingReq = appClient.example.$get
-
+const getGreetingReq = apiClient.example.$get
 type GetGreetingReq = InferRequestType<typeof getGreetingReq>['query']
 
 export const getGreeting = async (req: GetGreetingReq) =>
-  await fetchWrapper(getGreetingReq({ query: req }))
-
+  await getGreetingReq({ query: req }).then(inferJSON)
 export const getGreetingQueryOptions = (req: GetGreetingReq) =>
   queryOptions({
     queryKey: ['getGreeting', req],
