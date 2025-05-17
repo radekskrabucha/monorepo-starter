@@ -1,4 +1,11 @@
 import { appHC } from '@monorepo-starter/api/client'
-import { envClient } from '~web/utils/env/client'
+import { fetchApiClient } from './fetch'
 
-export const appClient = appHC(envClient.VITE_API_URL + '/api')
+export const apiClient = appHC('', {
+  fetch: (input: RequestInfo | URL, requestInit?: RequestInit) => {
+    return fetchApiClient(
+      input instanceof URL ? input.toString() : input,
+      requestInit
+    )
+  }
+})
