@@ -1,4 +1,4 @@
-ARG NODE_VERSION=22.14.0
+ARG NODE_VERSION=22
 
 # Alpine image
 FROM node:${NODE_VERSION}-alpine AS alpine
@@ -60,15 +60,9 @@ WORKDIR /app
 COPY --chown=nodejs:nodejs --from=builder /app .
 WORKDIR /app/apps/${PROJECT_FOLDER_NAME}
 
-ARG PORT=3000
+ARG PORT=8000
 ENV PORT=${PORT}
 ENV NODE_ENV=production
 EXPOSE ${PORT}
-
-ARG VITE_IS_DEV=false
-ARG VITE_API_URL=http://localhost:4000
-
-ENV VITE_IS_DEV=${VITE_IS_DEV}
-ENV VITE_API_URL=${VITE_API_URL}
 
 CMD ["node", ".output/server/index.mjs"]
