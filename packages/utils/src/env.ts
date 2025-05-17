@@ -8,7 +8,7 @@ export const validateEnv = <T extends z.ZodRawShape>(
   } catch (error) {
     if (error instanceof z.ZodError) {
       console.error('❌ Invalid environment variables')
-      console.error(z.prettifyError(error))
+      console.error(error.flatten().fieldErrors)
       process.exit(1)
     }
 
