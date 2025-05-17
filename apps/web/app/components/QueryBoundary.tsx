@@ -45,7 +45,7 @@ export function QueryBoundary<T = unknown, E extends Error = Error>({
       />
     )
   }
-  if (isLoading ? isLoading(query) : query.isPending) {
+  if (isLoading ? isLoading(query) : query.isFetching) {
     return loadingFallback
   }
   if (
