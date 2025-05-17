@@ -4,10 +4,8 @@
 .vscode/*
 !.vscode/launch.json
 !.vscode/*.code-snippets
-.idea/workspace.xml
-.idea/usage.statistics.xml
-.idea/shelf
-.idea
+.idea/*
+!/.idea/runConfigurations
 .cache
 
 # deps
