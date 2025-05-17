@@ -24,7 +24,9 @@ const EnvSchema = z.object({
     'fatal',
     'silent'
   ]),
-  TRUSTED_ORIGINS: z.string()
+  TRUSTED_ORIGINS: z.string(),
+  DATABASE_URL: z.string(),
+  REDIS_URL: z.string()
 })
 
 export type Env = z.infer<typeof EnvSchema>
