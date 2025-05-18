@@ -20,50 +20,27 @@ type ExtractSuccessResponse<T> =
       : never
     : never
 
-export async function inferJSON<
-  Data,
-  Status extends StatusCode,
-  Format extends ResponseFormat,
-  T extends ClientResponse<Data, Status, Format>,
-  SuccessResponse extends ExtractSuccessResponse<T> = ExtractSuccessResponse<T>
->(
-  data: T
-): Promise<
-  SuccessResponse extends ClientResponse<infer Data, StatusCode, ResponseFormat>
-    ? Data
-    : never
-> {
-  const json = await data.json()
-
-  return json as SuccessResponse extends ClientResponse<
+export function inferJSON<
+  T extends ClientResponse<unknown, StatusCode, ResponseFormat>,
+  SuccessData = ExtractSuccessResponse<T> extends ClientResponse<
     infer D,
     StatusCode,
     ResponseFormat
   >
     ? D
     : never
+>(data: T): SuccessData {
+  return data as unknown as SuccessData
 }
-
-export async function inferText<
-  Data,
-  Status extends StatusCode,
-  Format extends ResponseFormat,
-  T extends ClientResponse<Data, Status, Format>,
-  SuccessResponse extends ExtractSuccessResponse<T> = ExtractSuccessResponse<T>
->(
-  data: T
-): Promise<
-  SuccessResponse extends ClientResponse<infer Data, StatusCode, ResponseFormat>
-    ? Data
-    : never
-> {
-  const text = await data.text()
-
-  return text as SuccessResponse extends ClientResponse<
+export function inferText<
+  T extends ClientResponse<unknown, StatusCode, ResponseFormat>,
+  SuccessData = ExtractSuccessResponse<T> extends ClientResponse<
     infer D,
     StatusCode,
     ResponseFormat
   >
     ? D
     : never
+>(data: T): SuccessData {
+  return data as unknown as SuccessData
 }
