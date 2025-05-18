@@ -1,11 +1,11 @@
-import { Button } from '@monorepo-starter/ui/button'
+import type { ErrorFallbackProps } from '@monorepo-starter/ui/containers/suspense-query-boundary'
 import { isEmpty } from '@monorepo-starter/utils/common'
 import type { NoEmpty } from '@monorepo-starter/utils/types'
 import type { UseQueryResult, FetchStatus } from '@tanstack/react-query'
 import {
-  DefaultErrorFallback as ErrorFallback,
-  NavigateToHomeButton
-} from './DefaultErrorFallback.js'
+  DefaultNoDataFallback,
+  DefaultErrorFallback
+} from './SuspenseQueryBoundary'
 
 type QueryBoundaryProps<T = unknown, E extends Error = Error> = {
   query: UseQueryResult<T, E>
@@ -30,18 +30,16 @@ export function QueryBoundary<T = unknown, E extends Error = Error>({
     return errorFallback ? (
       errorFallback({
         error: query.error,
-        retry: async () => {
+        reset: async () => {
           await query.refetch()
-        },
-        errorUpdateCount: query.errorUpdateCount
+        }
       })
     ) : (
       <DefaultErrorFallback
         error={query.error}
-        retry={async () => {
-          await query.refetch()
+        reset={() => {
+          query.refetch()
         }}
-        errorUpdateCount={query.errorUpdateCount}
       />
     )
   }
@@ -59,35 +57,3 @@ export function QueryBoundary<T = unknown, E extends Error = Error>({
 
   return children(query.data as NoEmpty<T>)
 }
-
-type ErrorFallbackProps<E extends Error = Error> = {
-  error: E
-  retry: VoidFunction
-  errorUpdateCount: number
-}
-
-export const DefaultErrorFallback = ({
-  error,
-  retry,
-  errorUpdateCount
-}: ErrorFallbackProps) => {
-  const canRetry = errorUpdateCount < 3
-
-  return (
-    <ErrorFallback error={error}>
-      <div className="flex flex-wrap items-center gap-4">
-        {canRetry && <Button onClick={retry}>Retry</Button>}
-        <NavigateToHomeButton />
-      </div>
-    </ErrorFallback>
-  )
-}
-
-export const DefaultNoDataFallback = () => (
-  <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center text-balance">
-    <h2 className="text-3xl font-bold">Oopss... not found.</h2>
-    <p className="text-foreground-secondary">
-      Seems like there is nothing here yet.
-    </p>
-  </div>
-)

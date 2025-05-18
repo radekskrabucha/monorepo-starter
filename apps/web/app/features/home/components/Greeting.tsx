@@ -1,18 +1,17 @@
-import { useQuery } from '@tanstack/react-query'
 import { DefaultErrorFallback } from '~web/components/DefaultErrorFallback'
-import { QueryBoundary } from '~web/components/QueryBoundary'
+import {
+  SuspenseQuery,
+  SuspenseQueryWrapper
+} from '~web/components/SuspenseQueryBoundary'
 import { getGreetingQueryOptions } from '../actions'
 
-export const Greeting = () => {
-  const getGreetingQuery = useQuery(getGreetingQueryOptions({ name: 'John' }))
-
-  return (
-    <QueryBoundary
-      query={getGreetingQuery}
-      loadingFallback={<p>Loading...</p>}
-      errorFallback={({ error }) => <DefaultErrorFallback error={error} />}
-    >
+export const Greeting = () => (
+  <SuspenseQueryWrapper
+    loadingFallback={<p>Loading...</p>}
+    errorFallback={({ error }) => <DefaultErrorFallback error={error} />}
+  >
+    <SuspenseQuery options={getGreetingQueryOptions({ name: 'John' })}>
       {data => <h3 className="text-lg">{data.message}</h3>}
-    </QueryBoundary>
-  )
-}
+    </SuspenseQuery>
+  </SuspenseQueryWrapper>
+)
