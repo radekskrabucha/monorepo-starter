@@ -18,7 +18,7 @@
     "test": "turbo test"
   },
   "dependencies": {
-    "@hono/node-server": "1.14.1",
+    "@hono/node-server": "1.14.2",
     "@hono/standard-validator": "0.1.2",
     "@tanstack/react-form": "1.11.1",
     "@tanstack/react-query": "5.76.1",
